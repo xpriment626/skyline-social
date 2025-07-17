@@ -1,3 +1,5 @@
+"use client";
+
 import { Button } from "@/components/ui";
 
 export default function Home() {
@@ -83,15 +85,11 @@ export default function Home() {
 
             {/* Links */}
             <div className="flex gap-4 items-center">
-              <Button variant="glass" asChild>
-                <a href="/storybook" target="_blank">
-                  View Storybook
-                </a>
+              <Button variant="glass" onClick={() => window.open('/storybook', '_blank')}>
+                View Storybook
               </Button>
-              <Button variant="outline" asChild>
-                <a href="https://github.com" target="_blank">
-                  GitHub
-                </a>
+              <Button variant="outline" onClick={() => window.open('https://github.com', '_blank')}>
+                GitHub
               </Button>
             </div>
           </div>
