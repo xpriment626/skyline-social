@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Button } from "@/components/ui";
+import { Button, SkylineLogo } from "@/components/ui";
 import { HeroSection, FeaturesSection, HowItWorksSection, CTASection } from "@/components/sections";
 
 interface Section {
@@ -80,7 +80,7 @@ export default function Home() {
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center space-x-3">
             <div className="w-10 h-10 bg-black flex items-center justify-center geometric-square">
-              <span className="text-white font-bold text-lg transform -rotate-45">S</span>
+              <SkylineLogo className="w-6 h-6 text-white" />
             </div>
             <span className="text-2xl font-black tracking-[0.2em] text-black">SKYLINE</span>
           </div>
