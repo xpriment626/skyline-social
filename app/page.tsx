@@ -28,7 +28,7 @@ export default function Home() {
     setIsTransitioning(true);
     
     // Small delay for smooth transition
-    await new Promise(resolve => setTimeout(resolve, 150));
+    await new Promise(resolve => setTimeout(resolve, 200));
     
     setCurrentSection(index);
     setIsTransitioning(false);
@@ -46,9 +46,24 @@ export default function Home() {
       }
     };
 
-    // Prevent default scroll behavior
+    // Handle scroll-triggered navigation
     const handleWheel = (e: WheelEvent) => {
       e.preventDefault();
+      
+      // Debounce scroll events to prevent rapid section switching
+      const now = Date.now();
+      const timeSinceLastScroll = now - (window as any).lastScrollTime;
+      (window as any).lastScrollTime = now;
+      
+      if (timeSinceLastScroll < 300 || isTransitioning) return;
+      
+      if (e.deltaY > 0) {
+        // Scroll down - next section
+        navigateToSection(Math.min(2, currentSection + 1));
+      } else if (e.deltaY < 0) {
+        // Scroll up - previous section
+        navigateToSection(Math.max(0, currentSection - 1));
+      }
     };
 
     const handleTouchMove = (e: TouchEvent) => {
@@ -145,12 +160,12 @@ export default function Home() {
       )}
 
       {/* Navigation Dots */}
-      <div className="fixed right-8 top-1/2 transform -translate-y-1/2 z-20 space-y-3">
+      <div className="fixed right-8 top-1/2 transform -translate-y-1/2 z-20 space-y-6">
         {sections.slice(0, 3).map((section, index) => (
           <button
             key={index}
             onClick={() => navigateToSection(index)}
-            className={`w-3 h-3 rounded-full transition-all duration-300 ${
+            className={`w-4 h-4 rounded-full transition-all duration-300 ${
               currentSection === index 
                 ? 'bg-purple-500 scale-125' 
                 : 'bg-gray-300 hover:bg-gray-400'
