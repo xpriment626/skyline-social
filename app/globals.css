@@ -4,54 +4,65 @@
 
 @layer base {
   :root {
-    /* Default dark theme */
-    --background: 260 25% 5%;
-    --foreground: 0 0% 93%;
+    /* Light theme (default based on ref design) */
+    --background: 0 0% 98%;  /* bg-gray-50 */
+    --foreground: 0 0% 7%;   /* Black text */
     
     /* Border radius */
     --radius: 0.75rem;
     
-    /* Premium dark colors */
-    --primary: 262 100% 62%;
+    /* Colors from ref design */
+    --primary: 262 83% 58%;  /* Purple-500 */
     --primary-foreground: 0 0% 100%;
     
-    --secondary: 217 91% 60%;
+    --secondary: 158 64% 52%; /* Emerald-500 */
+    --secondary-foreground: 0 0% 100%;
+    
+    --muted: 0 0% 96%;  /* Gray-100 */
+    --muted-foreground: 0 0% 45%; /* Gray-600 */
+    
+    --accent: 262 83% 58%;
+    --accent-foreground: 0 0% 100%;
+    
+    /* Status colors */
+    --success: 158 64% 52%;
+    --warning: 38 92% 50%;
+    --error: 0 84% 60%;
+    --info: 217 91% 60%;
+    
+    /* Card and border colors */
+    --card: 0 0% 100%;  /* White */
+    --card-foreground: 0 0% 7%;
+    --border: 0 0% 88%;  /* Gray-200 */
+    --input: 0 0% 100%;
+  }
+  
+  .dark {
+    --background: 260 25% 5%;
+    --foreground: 0 0% 93%;
+    
+    --primary: 262 83% 58%;
+    --primary-foreground: 0 0% 100%;
+    
+    --secondary: 158 64% 52%;
     --secondary-foreground: 0 0% 100%;
     
     --muted: 240 5% 15%;
     --muted-foreground: 0 0% 65%;
     
-    --accent: 262 100% 62%;
+    --accent: 262 83% 58%;
     --accent-foreground: 0 0% 100%;
     
-    /* Status colors */
-    --success: 142 71% 45%;
-    --warning: 38 92% 50%;
-    --error: 0 84% 60%;
-    --info: 217 91% 60%;
-  }
-  
-  .light {
-    --background: 0 0% 100%;
-    --foreground: 0 0% 3.9%;
-    
-    --primary: 262 100% 62%;
-    --primary-foreground: 0 0% 100%;
-    
-    --secondary: 217 91% 60%;
-    --secondary-foreground: 0 0% 100%;
-    
-    --muted: 0 0% 96.1%;
-    --muted-foreground: 0 0% 45.1%;
-    
-    --accent: 262 100% 62%;
-    --accent-foreground: 0 0% 100%;
+    --card: 240 10% 8%;
+    --card-foreground: 0 0% 93%;
+    --border: 240 3% 20%;
+    --input: 240 10% 8%;
   }
 }
 
 @layer base {
   * {
-    @apply border-neutral-800;
+    @apply border-gray-200;
   }
   
   html {
@@ -59,68 +70,150 @@
   }
   
   body {
-    @apply text-foreground antialiased;
+    @apply text-foreground antialiased font-normal;
     background-color: hsl(var(--background));
     font-feature-settings: "rlig" 1, "calt" 1;
   }
+  
+  /* Enhanced text rendering for sophisticated typography */
+  h1, h2, h3, h4, h5, h6 {
+    text-rendering: optimizeLegibility;
+    font-feature-settings: "liga" 1, "calt" 1, "kern" 1;
+  }
 }
 
-/* Liquid glass utility classes */
+/* Apple liquid glass effects - subtle and natural */
 @layer components {
-  .glass {
-    @apply bg-glass-light backdrop-blur-xl border border-glass-border;
+  /* Base liquid glass - very subtle */
+  .liquid-glass {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(12px) saturate(120%);
+    border: 0.5px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.05);
   }
   
-  .glass-heavy {
-    @apply bg-glass-heavy backdrop-blur-2xl border border-glass-border;
+  .liquid-glass:hover {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(12px) saturate(130%);
+  }
+  
+  /* Purple liquid glass - warm purple tint */
+  .liquid-glass-purple {
+    background: rgba(147, 51, 234, 0.08);
+    backdrop-filter: blur(12px) saturate(120%);
+    border: 0.5px solid rgba(147, 51, 234, 0.15);
+    box-shadow: 0 4px 24px rgba(147, 51, 234, 0.08);
+    color: rgb(88, 28, 135);
+  }
+  
+  .liquid-glass-purple:hover {
+    background: rgba(147, 51, 234, 0.12);
+    backdrop-filter: blur(12px) saturate(130%);
+    border: 0.5px solid rgba(147, 51, 234, 0.2);
+  }
+  
+  /* Emerald liquid glass - warm emerald tint */
+  .liquid-glass-emerald {
+    background: rgba(16, 185, 129, 0.08);
+    backdrop-filter: blur(12px) saturate(120%);
+    border: 0.5px solid rgba(16, 185, 129, 0.15);
+    box-shadow: 0 4px 24px rgba(16, 185, 129, 0.08);
+    color: rgb(6, 120, 86);
+  }
+  
+  .liquid-glass-emerald:hover {
+    background: rgba(16, 185, 129, 0.12);
+    backdrop-filter: blur(12px) saturate(130%);
+    border: 0.5px solid rgba(16, 185, 129, 0.2);
+  }
+
+  /* Blueprint grid background (from ref design) */
+  .blueprint-grid {
+    background-image: 
+      linear-gradient(rgba(156, 163, 175, 0.3) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(156, 163, 175, 0.3) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+  
+  /* Glass effects with backdrop blur */
+  .glass {
+    @apply bg-white/80 backdrop-blur-sm border border-gray-200/50;
   }
   
   .glass-card {
-    @apply glass rounded-2xl p-6 shadow-glass;
+    @apply bg-white rounded-xl p-6 shadow-lg border-0;
   }
   
-  .glass-button {
-    @apply glass px-6 py-3 rounded-xl hover:bg-glass-medium transition-all duration-200 hover:shadow-glow;
+  /* Geometric elements (from ref design) */
+  .geometric-square {
+    @apply transform rotate-45;
   }
   
-  /* Gradient backgrounds */
-  .gradient-primary {
-    @apply bg-gradient-to-br from-primary-600 to-secondary-600;
+  .geometric-circle {
+    @apply rounded-full;
   }
   
-  .gradient-mesh {
-    background-image: 
-      radial-gradient(at 27% 37%, hsla(262, 100%, 62%, 0.3) 0px, transparent 50%),
-      radial-gradient(at 97% 21%, hsla(217, 91%, 60%, 0.3) 0px, transparent 50%),
-      radial-gradient(at 52% 99%, hsla(262, 100%, 62%, 0.2) 0px, transparent 50%),
-      radial-gradient(at 10% 29%, hsla(217, 91%, 60%, 0.2) 0px, transparent 50%);
+  /* Button styles - editorial sophistication */
+  .btn-primary {
+    @apply bg-black hover:bg-gray-800 text-white font-semibold px-6 rounded-full transition-colors tracking-wide;
   }
   
-  /* Text gradients */
-  .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary-400 to-secondary-400;
+  .btn-secondary {
+    @apply border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold px-6 rounded-full bg-transparent tracking-wide;
   }
   
-  /* Animations */
-  .animate-gradient {
-    background-size: 200% 200%;
-    animation: gradient 15s ease infinite;
+  .btn-ghost {
+    @apply text-gray-600 hover:text-black transition-colors font-medium tracking-wide;
   }
   
-  /* Shimmer effect */
-  .shimmer {
-    @apply relative overflow-hidden;
+  /* Status badges - magazine style */
+  .badge-purple {
+    @apply bg-purple-100 text-purple-700 px-4 py-2 rounded-full badge-editorial;
   }
   
-  .shimmer::before {
-    content: "";
-    @apply absolute inset-0 -translate-x-full;
-    background: linear-gradient(
-      90deg,
-      transparent,
-      rgba(255, 255, 255, 0.1),
-      transparent
-    );
-    animation: shimmer 2s infinite;
+  .badge-emerald {
+    @apply bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full badge-editorial;
+  }
+  
+  /* Sophisticated Manhattan/Editorial Typography */
+  .text-hero {
+    @apply font-serif text-5xl md:text-7xl lg:text-8xl font-black text-black leading-[0.85] tracking-tight;
+  }
+  
+  .text-hero-accent {
+    @apply font-serif text-5xl md:text-7xl lg:text-8xl font-bold text-purple-600 leading-[0.85] tracking-tight;
+  }
+  
+  .text-section-title {
+    @apply font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-black leading-tight tracking-tight;
+  }
+  
+  .text-card-title {
+    @apply font-sans text-xl md:text-2xl font-bold text-black tracking-tight;
+  }
+  
+  .text-subtitle {
+    @apply font-sans text-lg md:text-xl font-semibold text-gray-800 tracking-wide;
+  }
+  
+  .text-body {
+    @apply font-sans text-base font-normal text-gray-700 leading-relaxed;
+  }
+  
+  .text-body-large {
+    @apply font-sans text-lg font-medium text-gray-800 leading-relaxed;
+  }
+  
+  .text-caption {
+    @apply font-sans text-sm font-medium text-gray-600 tracking-wide uppercase;
+  }
+  
+  .text-muted {
+    @apply font-sans text-xs font-bold text-gray-500 tracking-[0.2em] uppercase;
+  }
+  
+  /* Magazine-style badge */
+  .badge-editorial {
+    @apply font-sans text-xs font-extrabold tracking-[0.25em] uppercase;
   }
 }

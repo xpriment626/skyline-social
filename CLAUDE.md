@@ -8,35 +8,41 @@ Skyline is an AI-powered influencer discovery and vetting platform currently in 
 
 ## Current Project State
 
-- **Phase**: Design & Planning (no code implementation yet)
-- **Next Step**: Initialize project and begin implementation of tasks in `tasks.md`
-- **Tech Stack** (Planned):
-  - Frontend: React/Next.js with TypeScript
-  - Styling: Tailwind CSS with custom dark theme
-  - Backend: Node.js/Express microservices
-  - Database: PostgreSQL + Redis
-  - AI Services: Python-based (OpenAI CLIP for computer vision)
+- **Phase**: UI Design System Implementation (Phase 1 Complete - 50% Done)
+- **Completed**: Typography system, component library foundation, liquid glass effects, design language specification
+- **Next Steps**: Complete remaining UI components, implement data models, add interactivity
+- **Tech Stack** (Implemented):
+  - ✅ Frontend: React/Next.js with TypeScript
+  - ✅ Styling: Tailwind CSS with sophisticated light theme
+  - ✅ Typography: Playfair Display + Inter font system
+  - ✅ Components: Button, Card, Input with liquid glass effects
+  - 🟡 Backend: Node.js/Express microservices (planned)
+  - 🟡 Database: PostgreSQL + Redis (planned)
+  - 🟡 AI Services: Python-based (OpenAI CLIP for computer vision) (planned)
 
 ## Common Development Tasks
 
-### Initial Project Setup (Not yet done)
-```bash
-# Initialize Next.js project with TypeScript
-npx create-next-app@latest skyline-app --typescript --tailwind --app
-
-# Install additional dependencies (once package.json exists)
-npm install framer-motion     # For animations
-npm install @radix-ui/react-* # For accessible UI components
-npm install react-query       # For data fetching
-npm install storybook        # For component development
-```
-
-### Running Development Server (After setup)
+### Development Server (Active)
 ```bash
 npm run dev      # Start Next.js development server
 npm run build    # Build for production
-npm run lint     # Run ESLint
-npm run test     # Run tests (once configured)
+npm run lint     # Run ESLint (if configured)
+npm run test     # Run tests (if configured)
+```
+
+### Current Dependencies
+```bash
+# Core framework
+next, react, react-dom, typescript
+
+# Styling and UI
+tailwindcss, lucide-react, class-variance-authority
+
+# Typography
+@next/font/google (Playfair Display, Inter)
+
+# Development
+eslint, @types/node, @types/react
 ```
 
 ## High-Level Architecture
@@ -74,10 +80,63 @@ Follow the tasks in `tasks.md` in order:
 
 ## Design Guidelines
 
-- **Theme**: Dark luxury aesthetic with purple/blue gradients
-- **Effects**: Liquid glass (backdrop blur), smooth animations, micro-interactions
-- **Components**: All UI should feel premium and exclusive
-- **Responsive**: Mobile-first approach with careful attention to touch interfaces
+### New Design Language (Light Theme Focus)
+Based on the refined design language from `app/ref.page.tsx`, Skyline now follows a clean, professional aesthetic:
+
+**Color Palette:**
+- **Background**: Light gray (`bg-gray-50`) with blueprint grid pattern
+- **Primary Accent**: Purple (`purple-400`, `purple-500`, `purple-600`)
+- **Secondary Accent**: Emerald green (`emerald-400`, `emerald-500`, `emerald-600`)
+- **Text**: Black primary text with gray variations for hierarchy
+- **Cards**: Clean white backgrounds with subtle shadows
+
+**Typography (Manhattan/Editorial Style):**
+- **Primary Fonts**: Playfair Display (serif) for headlines, Inter (sans-serif) for body text
+- **Hierarchy**: Bold, striking contrast - `font-black` headlines, `font-bold` subheadings, `font-normal` body
+- **Editorial Aesthetic**: Magazine-inspired with tight tracking (`tracking-tight`) for headlines, wide tracking for labels
+- **Sophisticated Weights**: Full range from hairline (100) to black (900) for dramatic hierarchy
+- **Line Heights**: Tight leading (0.85) for headlines, relaxed for body text
+
+**Components:**
+- **Buttons**: Rounded full (`rounded-full`) with semibold text and liquid glass variants
+- **Cards**: Clean white cards with subtle shadows and rounded corners
+- **Inputs**: Rounded full with clean borders and sophisticated focus states
+- **Glass Effects**: Apple-inspired liquid glass with subtle transparency (8-12%) and natural blur
+
+**Geometric Elements:**
+- **Shapes**: Rotated squares (`transform rotate-45`) and circles
+- **Floating Elements**: Subtle geometric shapes with varying opacity
+- **Grid Pattern**: Blueprint-style grid background
+
+**Layout Principles:**
+- **Spacing**: Generous whitespace and consistent padding
+- **Responsive**: Mobile-first with careful breakpoint management
+- **Clean Lines**: Minimal borders and clean separations
+- **Professional Feel**: Business-focused rather than gaming/entertainment
+
+### Implementation Guidelines
+
+**Typography:**
+- Use `.text-hero` for main headlines (Playfair Display, font-black, 8xl)
+- Use `.text-section-title` for section headers (Playfair Display, font-bold, 6xl)  
+- Use `.text-card-title` for component titles (Inter, font-bold, 2xl)
+- Use `.text-body` for regular content (Inter, font-normal, base)
+- Use `.text-muted` for labels (Inter, font-bold, uppercase, tracking)
+
+**Components:**
+- Prefer `rounded-full` for buttons and inputs with `font-semibold` text
+- Use purple and emerald as accent colors sparingly
+- Maintain sophisticated, editorial aesthetic
+- Include geometric elements for visual interest  
+- Apply blueprint grid backgrounds where appropriate
+- Use liquid glass effects for premium interactions
+
+**Current Component Library:**
+- ✅ `Button` - 6 variants including liquid glass (purple/emerald)
+- ✅ `Card` - Clean white cards with sophisticated shadows
+- ✅ `Input` - Rounded inputs with proper focus states
+- 🟡 Navigation, Modal, Dropdown (planned)
+- 🟡 Data visualization components (planned)
 
 ## Testing Strategy
 

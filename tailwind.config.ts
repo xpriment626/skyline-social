@@ -14,34 +14,34 @@ const config: Config = {
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         
-        // Primary colors - Purple/Blue gradient
+        // Primary colors - Purple accent (from ref design)
         primary: {
-          50: "#f3f1ff",
-          100: "#ebe5ff",
-          200: "#d9ceff",
-          300: "#bea6ff",
-          400: "#9f75ff",
-          500: "#843dff",
-          600: "#7916ff",
-          700: "#6b04fd",
-          800: "#5a03d5",
-          900: "#4b05ad",
-          950: "#2d0076",
+          50: "#faf7ff",
+          100: "#f3f0ff",
+          200: "#e9e3ff",
+          300: "#d3c6ff",
+          400: "#a855f7",
+          500: "#9333ea",
+          600: "#7c3aed",
+          700: "#6d28d9",
+          800: "#5b21b6",
+          900: "#4c1d95",
+          950: "#2e1065",
         },
         
-        // Secondary colors - Blue accent
+        // Secondary colors - Emerald accent (from ref design)
         secondary: {
-          50: "#eff6ff",
-          100: "#dbeafe",
-          200: "#bfdbfe",
-          300: "#93c5fd",
-          400: "#60a5fa",
-          500: "#3b82f6",
-          600: "#2563eb",
-          700: "#1d4ed8",
-          800: "#1e40af",
-          900: "#1e3a8a",
-          950: "#172554",
+          50: "#ecfdf5",
+          100: "#d1fae5",
+          200: "#a7f3d0",
+          300: "#6ee7b7",
+          400: "#34d399",
+          500: "#10b981",
+          600: "#059669",
+          700: "#047857",
+          800: "#065f46",
+          900: "#064e3b",
+          950: "#022c22",
         },
         
         // Neutral colors for dark theme
@@ -74,10 +74,27 @@ const config: Config = {
         info: "#3b82f6",
       },
       
-      // Typography
+      // Typography - Sophisticated Manhattan/Editorial aesthetic
       fontFamily: {
-        sans: ["var(--font-geist-sans)", "system-ui", "sans-serif"],
+        // Primary serif for headlines - magazine style
+        serif: ["var(--font-playfair)", "Georgia", "serif"],
+        // Modern sans-serif for body text
+        sans: ["var(--font-inter)", "var(--font-geist-sans)", "system-ui", "sans-serif"],
+        // Monospace fallback
         mono: ["var(--font-geist-mono)", "monospace"],
+      },
+      
+      // Extended font weights for dramatic hierarchy
+      fontWeight: {
+        hairline: "100",
+        thin: "200", 
+        light: "300",
+        normal: "400",
+        medium: "500",
+        semibold: "600",
+        bold: "700",
+        extrabold: "800",
+        black: "900",
       },
       
       fontSize: {

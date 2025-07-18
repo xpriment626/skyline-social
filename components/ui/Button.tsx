@@ -3,21 +3,22 @@ import { cn } from "@/lib/utils/cn";
 import { cva, type VariantProps } from "class-variance-authority";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:pointer-events-none disabled:opacity-50",
+  "inline-flex items-center justify-center font-light transition-colors rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:pointer-events-none disabled:opacity-50",
   {
     variants: {
       variant: {
-        primary: "gradient-primary text-white hover:shadow-glow hover:scale-105",
-        secondary: "bg-secondary-600 text-white hover:bg-secondary-700 hover:shadow-lg",
-        glass: "glass-button",
-        ghost: "hover:bg-glass-light hover:text-foreground",
-        outline: "border border-glass-border bg-transparent hover:bg-glass-light",
+        primary: "bg-black hover:bg-gray-800 text-white",
+        secondary: "border border-gray-300 text-gray-700 hover:bg-gray-50 bg-transparent",
+        glass: "liquid-glass text-gray-700",
+        "glass-purple": "liquid-glass-purple",
+        "glass-emerald": "liquid-glass-emerald",
+        outline: "border border-gray-300 text-gray-700 hover:bg-gray-50 bg-transparent",
       },
       size: {
-        sm: "h-9 px-3 text-sm rounded-lg",
-        md: "h-11 px-6 text-base rounded-xl",
-        lg: "h-13 px-8 text-lg rounded-xl",
-        icon: "h-10 w-10 rounded-lg",
+        sm: "h-8 px-6 text-sm min-w-[80px]",
+        md: "h-10 px-6 text-base min-w-[100px]",
+        lg: "h-12 px-8 text-lg min-w-[120px]",
+        icon: "h-10 w-10 p-0",
       },
     },
     defaultVariants: {
