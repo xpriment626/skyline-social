@@ -105,28 +105,6 @@ export default function Home() {
         </div>
       </header>
 
-      {/* Navigation Dots */}
-      <div className="fixed right-8 top-1/2 transform -translate-y-1/2 z-30 space-y-6">
-        {sections.map((section, index) => (
-          <button
-            key={index}
-            onClick={() => scrollToSection(section.id)}
-            className={`w-4 h-4 rounded-full transition-all duration-300 ${
-              activeSection === index 
-                ? 'bg-purple-500 scale-125' 
-                : 'bg-gray-300 hover:bg-gray-400'
-            }`}
-            aria-label={`Navigate to ${section.title} section`}
-          />
-        ))}
-      </div>
-
-      {/* Mobile scroll hint */}
-      <div className="md:hidden fixed bottom-4 left-1/2 transform -translate-x-1/2 z-30">
-        <div className="text-xs text-gray-500 bg-white/80 backdrop-blur-sm px-3 py-1 rounded-full border border-gray-200/50">
-          Scroll or tap dots to navigate
-        </div>
-      </div>
 
       {/* Main Content Area - All sections rendered */}
       <main role="main" className="relative z-10">
