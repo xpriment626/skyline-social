@@ -73,6 +73,9 @@
     @apply text-foreground antialiased font-normal;
     background-color: hsl(var(--background));
     font-feature-settings: "rlig" 1, "calt" 1;
+    /* Improve mobile viewport handling */
+    min-height: 100vh;
+    min-height: 100dvh; /* Dynamic viewport height for mobile */
   }
   
   /* Enhanced text rendering for sophisticated typography */
@@ -175,45 +178,84 @@
     @apply bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full badge-editorial;
   }
   
-  /* Sophisticated Manhattan/Editorial Typography */
+  /* Sophisticated Manhattan/Editorial Typography - use CSS variables for fonts */
   .text-hero {
-    @apply font-serif text-5xl md:text-7xl lg:text-8xl font-black text-black leading-[0.85] tracking-tight;
+    font-family: var(--font-playfair), serif;
+    @apply text-5xl md:text-7xl lg:text-8xl font-black text-black leading-[0.85] tracking-tight;
   }
   
   .text-hero-accent {
-    @apply font-serif text-5xl md:text-7xl lg:text-8xl font-bold text-purple-600 leading-[0.85] tracking-tight;
+    font-family: var(--font-playfair), serif;
+    @apply text-5xl md:text-7xl lg:text-8xl font-bold text-purple-600 leading-[0.85] tracking-tight;
   }
   
   .text-section-title {
-    @apply font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-black leading-tight tracking-tight;
+    font-family: var(--font-playfair), serif;
+    @apply text-4xl md:text-5xl lg:text-6xl font-bold text-black leading-tight tracking-tight;
   }
   
   .text-card-title {
-    @apply font-sans text-xl md:text-2xl font-bold text-black tracking-tight;
+    font-family: var(--font-inter), sans-serif;
+    @apply text-xl md:text-2xl font-bold text-black tracking-tight;
   }
   
   .text-subtitle {
-    @apply font-sans text-lg md:text-xl font-semibold text-gray-800 tracking-wide;
+    font-family: var(--font-inter), sans-serif;
+    @apply text-lg md:text-xl font-semibold text-gray-800 tracking-wide;
   }
   
   .text-body {
-    @apply font-sans text-base font-normal text-gray-700 leading-relaxed;
+    font-family: var(--font-inter), sans-serif;
+    @apply text-base font-normal text-gray-700 leading-relaxed;
   }
   
   .text-body-large {
-    @apply font-sans text-lg font-medium text-gray-800 leading-relaxed;
+    font-family: var(--font-inter), sans-serif;
+    @apply text-lg font-medium text-gray-800 leading-relaxed;
   }
   
   .text-caption {
-    @apply font-sans text-sm font-medium text-gray-600 tracking-wide uppercase;
+    font-family: var(--font-inter), sans-serif;
+    @apply text-sm font-medium text-gray-600 tracking-wide uppercase;
   }
   
   .text-muted {
-    @apply font-sans text-xs font-bold text-gray-500 tracking-[0.2em] uppercase;
+    font-family: var(--font-inter), sans-serif;
+    @apply text-xs font-bold text-gray-500 tracking-[0.2em] uppercase;
   }
   
   /* Magazine-style badge */
   .badge-editorial {
-    @apply font-sans text-xs font-extrabold tracking-[0.25em] uppercase;
+    font-family: var(--font-inter), sans-serif;
+    @apply text-xs font-extrabold tracking-[0.25em] uppercase;
+  }
+
+  /* Mobile viewport improvements */
+  @media (max-width: 768px) {
+    .min-h-screen {
+      min-height: 100vh;
+      min-height: 100dvh; /* Dynamic viewport height for mobile browsers */
+    }
+    
+    /* Adjust typography for mobile */
+    .text-hero {
+      font-family: var(--font-playfair), serif;
+      @apply text-4xl md:text-7xl lg:text-8xl;
+    }
+    
+    .text-section-title {
+      font-family: var(--font-playfair), serif;
+      @apply text-3xl md:text-5xl lg:text-6xl;
+    }
+    
+    /* Ensure touch targets are adequate size */
+    button {
+      min-height: 44px; /* iOS accessibility guidelines */
+    }
+    
+    /* Improve touch scrolling */
+    * {
+      -webkit-overflow-scrolling: touch;
+    }
   }
 }
