@@ -39,7 +39,7 @@ export default function Home() {
     const handleKeyPress = (e: KeyboardEvent) => {
       if (e.key === 'ArrowRight' || e.key === ' ') {
         e.preventDefault();
-        navigateToSection(Math.min(sections.length - 1, currentSection + 1));
+        navigateToSection(Math.min(2, currentSection + 1));
       } else if (e.key === 'ArrowLeft') {
         e.preventDefault();
         navigateToSection(Math.max(0, currentSection - 1));
@@ -69,7 +69,7 @@ export default function Home() {
       
       if (touchStartX - touchEndX > threshold) {
         // Swipe left - next section
-        navigateToSection(Math.min(sections.length - 1, currentSection + 1));
+        navigateToSection(Math.min(2, currentSection + 1));
       } else if (touchEndX - touchStartX > threshold) {
         // Swipe right - previous section
         navigateToSection(Math.max(0, currentSection - 1));
@@ -123,7 +123,7 @@ export default function Home() {
               <span className="text-2xl font-black tracking-[0.2em] text-black">SKYLINE</span>
             </div>
             <nav className="hidden md:flex items-center space-x-8">
-              {sections.map((section, index) => (
+              {sections.slice(0, 3).map((section, index) => (
                 <button
                   key={section.id}
                   onClick={() => navigateToSection(index)}
@@ -146,7 +146,7 @@ export default function Home() {
 
       {/* Navigation Dots */}
       <div className="fixed right-8 top-1/2 transform -translate-y-1/2 z-20 space-y-3">
-        {sections.map((section, index) => (
+        {sections.slice(0, 3).map((section, index) => (
           <button
             key={index}
             onClick={() => navigateToSection(index)}
@@ -171,11 +171,11 @@ export default function Home() {
           <ChevronLeft className="w-5 h-5" />
         </button>
         <span className="text-sm font-medium text-gray-600 bg-white/80 backdrop-blur-sm px-3 py-1 rounded-full border border-gray-200/50">
-          {currentSection + 1} / {sections.length}
+          {Math.min(currentSection + 1, 3)} / 3
         </span>
         <button
-          onClick={() => navigateToSection(Math.min(sections.length - 1, currentSection + 1))}
-          disabled={currentSection === sections.length - 1 || isTransitioning}
+          onClick={() => navigateToSection(Math.min(2, currentSection + 1))}
+          disabled={currentSection === 2 || isTransitioning}
           className="p-2 rounded-full bg-white/80 backdrop-blur-sm border border-gray-200/50 hover:bg-white transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
           aria-label="Go to next section"
         >
