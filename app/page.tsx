@@ -8,7 +8,7 @@ import { HeroSection, FeaturesSection, HowItWorksSection, CTASection } from "@/c
 interface Section {
   id: string;
   title: string;
-  component: React.ComponentType;
+  component: React.ComponentType<any>;
 }
 
 export default function Home() {
@@ -16,10 +16,10 @@ export default function Home() {
   const [isTransitioning, setIsTransitioning] = useState(false);
   
   const sections: Section[] = [
-    { id: 'hero', title: 'Hero', component: HeroSection },
+    { id: 'hero', title: 'Home', component: HeroSection },
     { id: 'features', title: 'Features', component: FeaturesSection },
     { id: 'how-it-works', title: 'How It Works', component: HowItWorksSection },
-    { id: 'cta', title: 'Get Started', component: CTASection }
+    { id: 'cta', title: 'Sign Up', component: CTASection }
   ];
 
   const navigateToSection = async (index: number) => {
@@ -34,7 +34,7 @@ export default function Home() {
     setIsTransitioning(false);
   };
 
-  // Keyboard navigation
+  // Keyboard navigation and scroll prevention
   useEffect(() => {
     const handleKeyPress = (e: KeyboardEvent) => {
       if (e.key === 'ArrowRight' || e.key === ' ') {
@@ -44,6 +44,15 @@ export default function Home() {
         e.preventDefault();
         navigateToSection(Math.max(0, currentSection - 1));
       }
+    };
+
+    // Prevent default scroll behavior
+    const handleWheel = (e: WheelEvent) => {
+      e.preventDefault();
+    };
+
+    const handleTouchMove = (e: TouchEvent) => {
+      e.preventDefault();
     };
 
     // Touch navigation for mobile
@@ -68,11 +77,15 @@ export default function Home() {
     };
 
     window.addEventListener('keydown', handleKeyPress);
+    window.addEventListener('wheel', handleWheel, { passive: false });
+    window.addEventListener('touchmove', handleTouchMove, { passive: false });
     window.addEventListener('touchstart', handleTouchStart);
     window.addEventListener('touchend', handleTouchEnd);
     
     return () => {
       window.removeEventListener('keydown', handleKeyPress);
+      window.removeEventListener('wheel', handleWheel);
+      window.removeEventListener('touchmove', handleTouchMove);
       window.removeEventListener('touchstart', handleTouchStart);
       window.removeEventListener('touchend', handleTouchEnd);
     };
@@ -81,7 +94,9 @@ export default function Home() {
   const CurrentSectionComponent = sections[currentSection]?.component;
 
   return (
-    <div className="min-h-screen min-h-[100dvh] bg-gray-50 relative">
+    <div className={`min-h-screen min-h-[100dvh] relative overflow-hidden transition-colors duration-500 ${
+      currentSection === 3 ? 'bg-gray-900' : 'bg-gray-50'
+    }`}>
       {/* Blueprint Grid Background - only show on non-CTA sections */}
       {currentSection !== 3 && <div className="absolute inset-0 opacity-30 blueprint-grid" />}
 
@@ -123,7 +138,7 @@ export default function Home() {
             </nav>
             <div className="flex items-center space-x-4">
               <Button variant="ghost">Sign In</Button>
-              <Button>Start Free Trial</Button>
+              <Button onClick={() => navigateToSection(3)}>Get Started</Button>
             </div>
           </div>
         </header>
@@ -183,7 +198,11 @@ export default function Home() {
         role="main"
         aria-live="polite"
       >
-        {CurrentSectionComponent && <CurrentSectionComponent />}
+        {CurrentSectionComponent && (
+          <CurrentSectionComponent 
+            onGetStarted={() => navigateToSection(3)}
+          />
+        )}
       </main>
     </div>
   );
