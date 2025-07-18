@@ -2,7 +2,11 @@
 
 import { Button } from "@/components/ui";
 
-export function HeroSection() {
+interface HeroSectionProps {
+  onGetStarted?: () => void;
+}
+
+export function HeroSection({ onGetStarted }: HeroSectionProps) {
   return (
     <section className="flex items-center justify-center min-h-screen min-h-[100dvh]">
       <div className="container mx-auto px-4">
@@ -24,7 +28,7 @@ export function HeroSection() {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button>Start Free Trial</Button>
+              <Button onClick={onGetStarted}>Get Started</Button>
               <Button variant="secondary">Watch Demo</Button>
             </div>
 

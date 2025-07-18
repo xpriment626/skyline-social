@@ -5,7 +5,7 @@ import { ArrowRight } from "lucide-react";
 
 export function CTASection() {
   return (
-    <section className="flex items-center justify-center min-h-screen min-h-[100dvh] bg-black">
+    <section className="flex items-center justify-center min-h-screen min-h-[100dvh] bg-transparent">
       <div className="container mx-auto px-4 text-center">
         <div className="max-w-3xl mx-auto">
           <h2 className="font-serif text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight">
