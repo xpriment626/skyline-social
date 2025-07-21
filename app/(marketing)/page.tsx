@@ -1,17 +1,19 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { Button, SkylineLogo } from "@/components/ui";
-import { HeroSection, FeaturesSection, HowItWorksSection, CTASection } from "@/components/sections";
+import { HeroSection, FeaturesSection, HowItWorksSection, CTASection } from "@/components/marketing/sections";
 
 interface Section {
   id: string;
   title: string;
-  component: React.ComponentType<any>;
+  component: React.ComponentType;
 }
 
 export default function Home() {
   const [activeSection, setActiveSection] = useState(0);
+  const router = useRouter();
   
   const sections: Section[] = [
     { id: 'hero', title: 'Home', component: HeroSection },
@@ -30,8 +32,8 @@ export default function Home() {
     }
   };
 
-  const scrollToCTA = () => {
-    scrollToSection('cta');
+  const navigateToApp = () => {
+    router.push('/app');
   };
 
   // Handle scroll-based active section detection
@@ -99,8 +101,8 @@ export default function Home() {
             ))}
           </nav>
           <div className="flex items-center space-x-4">
-            <Button variant="ghost">Sign In</Button>
-            <Button onClick={scrollToCTA}>Get Started</Button>
+            <Button variant="secondary">Sign In</Button>
+            <Button onClick={navigateToApp}>Get Started</Button>
           </div>
         </div>
       </header>
@@ -109,19 +111,19 @@ export default function Home() {
       {/* Main Content Area - All sections rendered */}
       <main role="main" className="relative z-10">
         <section id="hero" className="min-h-screen pt-20">
-          <HeroSection onGetStarted={scrollToCTA} />
+          <HeroSection onGetStarted={navigateToApp} />
         </section>
         
         <section id="features" className="min-h-screen">
-          <FeaturesSection onGetStarted={scrollToCTA} />
+          <FeaturesSection />
         </section>
         
         <section id="how-it-works" className="min-h-screen">
-          <HowItWorksSection onGetStarted={scrollToCTA} />
+          <HowItWorksSection />
         </section>
         
         <section id="cta" className="min-h-screen bg-gray-900">
-          <CTASection onGetStarted={scrollToCTA} />
+          <CTASection />
         </section>
       </main>
     </div>
