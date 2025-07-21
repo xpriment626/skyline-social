@@ -58,7 +58,7 @@ export function HowItWorksSection() {
                   <h3 className="text-card-title">Join 500+ brands already using Skyline</h3>
                 </div>
                 <p className="text-body mb-6">
-                  "Skyline helped us find micro-influencers with 10x higher engagement rates than our previous campaigns. The authenticity detection saved us from countless fake accounts."
+                  &ldquo;Skyline helped us find micro-influencers with 10x higher engagement rates than our previous campaigns. The authenticity detection saved us from countless fake accounts.&rdquo;
                 </p>
                 <div className="flex items-center justify-center">
                   <div className="w-12 h-12 bg-purple-500 rounded-full mr-3"></div>
