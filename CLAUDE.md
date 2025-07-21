@@ -170,16 +170,40 @@ When implementing tests:
 ```
 skyline/
 ├── app/                     # Next.js app directory
+│   ├── (marketing)/        # Marketing site routes (route group)
+│   │   ├── page.tsx        # Landing page with scroll navigation (/)
+│   │   └── layout.tsx      # Marketing-specific layout
+│   ├── (app)/              # Application routes (route group)
+│   │   ├── layout.tsx      # App-specific layout with navigation
+│   │   ├── page.tsx        # Main app dashboard (/app)
+│   │   ├── workspaces/     # Workspace management
+│   │   │   ├── page.tsx    # Workspace list (/app/workspaces)
+│   │   │   ├── new/        # Create workspace
+│   │   │   └── [id]/       # Individual workspace
+│   │   │       ├── page.tsx              # Workspace dashboard
+│   │   │       ├── discover/             # Creator discovery
+│   │   │       ├── analytics/            # Analytics dashboard
+│   │   │       └── settings/             # Workspace settings
+│   │   └── creator/        # Creator profiles
+│   │       └── [id]/       # Individual creator
+│   ├── auth/               # Authentication routes
+│   │   ├── login/
+│   │   └── signup/
 │   ├── globals.css         # Global styles and Tailwind imports
-│   ├── layout.tsx          # Root layout component
-│   └── page.tsx            # Main landing page with section navigation
+│   └── layout.tsx          # Root layout (shared fonts, providers)
 ├── components/             # Reusable UI components
-│   ├── sections/           # Landing page sections
-│   │   ├── HeroSection.tsx
-│   │   ├── FeaturesSection.tsx
-│   │   ├── HowItWorksSection.tsx
-│   │   └── CTASection.tsx
-│   └── ui/                 # Base UI components
+│   ├── marketing/          # Landing page components
+│   │   └── sections/       # Current sections (Hero, Features, etc.)
+│   │       ├── HeroSection.tsx
+│   │       ├── FeaturesSection.tsx
+│   │       ├── HowItWorksSection.tsx
+│   │       └── CTASection.tsx
+│   ├── app/                # Application components
+│   │   ├── workspace/      # Workspace-specific components
+│   │   ├── creator/        # Creator-related components
+│   │   ├── analytics/      # Analytics components
+│   │   └── navigation/     # App navigation
+│   └── ui/                 # Shared UI components
 │       ├── Button.tsx      # Button component with variants
 │       ├── Card.tsx        # Card component
 │       └── Input.tsx       # Input component
@@ -196,9 +220,11 @@ skyline/
 - `requirements.md` - User stories and acceptance criteria
 - `design.md` - Detailed technical architecture and data models
 - `tasks.md` - Step-by-step implementation plan
-- `app/page.tsx` - Main landing page implementation
-- `components/ui/` - Base component library
-- `components/sections/` - Landing page sections
+- `app/(marketing)/page.tsx` - Main landing page implementation with scroll navigation
+- `app/(app)/` - Application routes and components
+- `components/ui/` - Shared UI component library
+- `components/marketing/sections/` - Landing page sections
+- `components/app/` - Application-specific components
 
 ## TypeScript Interfaces
 
@@ -239,16 +265,17 @@ Based on user stories and acceptance criteria:
 2. **Premium Landing Page** - ✅ Hero section, liquid glass effects, responsive design
 3. **Component Library** - ✅ Glass cards, buttons, navigation, loading states
 
-### Phase 2: Core Features (Tasks 4-6) - 🟡 IN PROGRESS
-4. **Workspace Management** - 🟡 Creation modal, dashboard, settings panel, switching
-5. **Creator Discovery Feed** - 🟡 Masonry layout, profile cards, similarity scoring, filtering
-6. **Analytics Dashboard** - 🟡 Authenticity scores, engagement charts, trend detection
+### Phase 2: Repository Restructuring & Core Features (Tasks 4-6) - 🟡 IN PROGRESS
+4. **Repository Restructuring** - 🟡 Route groups, component organization, app/marketing separation
+5. **Workspace Management** - 🔄 Creation modal, dashboard, settings panel, switching
+6. **Creator Discovery Feed** - 🔄 Masonry layout, profile cards, similarity scoring, filtering
+7. **Analytics Dashboard** - 🔄 Authenticity scores, engagement charts, trend detection
 
-### Phase 3: Polish (Tasks 7-10) - 🔄 PENDING
-7. **Dummy Data System** - 🔄 Realistic creator profiles, authenticity scenarios, trends
-8. **Responsive Design** - 🟡 Mobile optimization completed, touch interfaces implemented
-9. **Premium Interactions** - 🟡 Animations with Framer Motion, hover effects, transitions
-10. **Optimization** - 🔄 Performance, accessibility, cross-browser compatibility
+### Phase 3: Polish (Tasks 8-11) - 🔄 PENDING
+8. **Dummy Data System** - 🔄 Realistic creator profiles, authenticity scenarios, trends
+9. **Responsive Design** - 🟡 Mobile optimization completed, touch interfaces implemented
+10. **Premium Interactions** - 🟡 Animations with Framer Motion, hover effects, transitions
+11. **Optimization** - 🔄 Performance, accessibility, cross-browser compatibility
 
 ## Technical Architecture
 
