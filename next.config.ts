@@ -76,7 +76,7 @@ const nextConfig: NextConfig = {
   },
   
   // Webpack configuration (fallback when not using Turbopack)
-  webpack(config, { isServer }) {
+  webpack(config) {
     // Only apply this configuration when not using Turbopack
     if (!process.env.TURBOPACK) {
       config.module.rules.push({
